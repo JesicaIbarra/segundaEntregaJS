@@ -1,3 +1,5 @@
+alert ("Bienvenido Viajare Piú nuevo sistema de venta de pasajes");
+
 const nombreCliente = prompt("Ingrese su nombre");
 
 const destinoCliente = prompt("Seleccione el lugar que desee viajar: Buenos Aires - Cordoba - Rosario - Chubut - Santa Fe - Misiones - Salta - Formosa - Rio Negro - Catamarca - Chaco - Santa Cruz - La Pampa").toUpperCase();
@@ -24,24 +26,14 @@ const provinciasDestino = [{destino:"BUENOS AIRES", precio: 22000},
                             {destino:"CHACO", precio: 30000},
                             {destino:"SANTA CRUZ", precio: 29000},
                             {destino:"LA PAMPA", precio: 27000}];
-
-class ViajeDelPasajero{                         
-    constructor (nombre , destino , pasajeros){
-        this.nombre = nombre;
-        this.destino = destino;
-        this.pasajeros = pasajeros;
-    }
-}
-
-const pasaje = new ViajeDelPasajero( nombreCliente , destinoCliente, cantidadPasajeros);
-
-//funcion encotrar la provincia solicitada por el cliente
-
+    
 encontrar = provinciasDestino.filter(function (encontrar) {
     if(encontrar.destino === destinoCliente){
         return  precioPasaje = encontrar.precio;
-    };
+        };
 });
+
+console.log(precioPasaje)
 
 for(let i = 0; i<cantidadPasajeros; i++){
     let nombrePasajeros = prompt("Igrese el nombre del pasajero n° "+(i+1)).toUpperCase();
@@ -53,16 +45,49 @@ for(let i = 0; i<cantidadPasajeros; i++){
     }
 }
 
-let contadorMenores = (precioPasaje*menoresEdad.length)/2;
-let contadorMayores = (precioPasaje*mayoresEdad.length)
-let totalCostoPasaje = contadorMayores + contadorMenores;
-console.log(contadorMenores);
-console.log(contadorMayores);
-console.log(totalCostoPasaje);
+class ViajeDelPasajero{                         
+    constructor (nombre , destino , pasajeros, precio , clienteMayoresEdad, clientesMenoresEdad){
+        this.nombre = nombre;
+        this.destino = destino;
+        this.pasajeros = pasajeros;
+        this.precio = precio;
+        this.clienteMayoresEdad = clienteMayoresEdad;
+        this.clientesMenoresEdad = clientesMenoresEdad;
+        this.precioMenoresEdad = 0;
+        this.totalCostoPasaje = 0;
+    }
 
-alert("Los pasajeros menores de edad son: " +menoresEdad + ", el valor de cada uno de sus pasajes es: $"+ (precioPasaje/2));
-alert("Los pasajeros mayores de 18 años son : " +mayoresEdad+precioPasaje+", el valor de cada uno de sus pasajes es: $"+ precioPasaje);
-alert(" EL TOTAL DE SU COMPRA ES: $"+totalCostoPasaje);
+    pasajerosMenoresEdad(){
+        this.precioMenoresEdad= this.precio/2;
+    }
 
-console.log(encontrar);
+    costoTotal(){
+        this.totalCostoPasaje = (this.clientesMenoresEdad.length*this.precioMenoresEdad) +   this.clienteMayoresEdad.length*this.precio;
+    }    
+
+}
+
+const pasaje = new ViajeDelPasajero( nombreCliente , destinoCliente, cantidadPasajeros, precioPasaje, mayoresEdad , menoresEdad);
+
+
+pasaje.pasajerosMenoresEdad();
+pasaje.costoTotal();
+
+if(pasaje.clientesMenoresEdad.length >0 ){
+    console.log("Sr/a. "+ nombreCliente+": Los pasajeros menores de 18 años son : " +pasaje.clientesMenoresEdad+", el valor de cada uno de sus pasajes es: $"+ pasaje.precioMenoresEdad);
+
+    alert("Sr/a. "+ nombreCliente+": os pasajeros menores de 18 años son : " +pasaje.clientesMenoresEdad+", el valor de cada uno de sus pasajes es: $"+ pasaje.precioMenoresEdad);
+}
+
+if(pasaje.clientesMenoresEdad.length >0){
+    console.log("Los pasajeros mayores de 18 años son : " +pasaje.clienteMayoresEdad+", el valor de cada uno de sus pasajes es: $"+ pasaje.precio);
+
+    alert("Los pasajeros mayores de 18 años son : " +pasaje.clienteMayoresEdad+", el valor de cada uno de sus pasajes es: $"+ pasaje.precio);
+
+}
+
+console.log("El costo total del pasaje es $"+pasaje.totalCostoPasaje);
+
+alert("El costo total del pasaje es $"+pasaje.totalCostoPasaje)
+
 
