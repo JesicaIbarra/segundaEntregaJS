@@ -1,4 +1,4 @@
-alert ("Bienvenido Viajare Piú nuevo sistema de venta de pasajes");
+alert ("Bienvenido Viajare Piú nuevo sistema de venta de pasajes").toUpperCase();
 
 const nombreCliente = prompt("Ingrese su nombre");
 
@@ -36,7 +36,7 @@ encontrar = provinciasDestino.filter(function (encontrar) {
 console.log(precioPasaje)
 
 for(let i = 0; i<cantidadPasajeros; i++){
-    let nombrePasajeros = prompt("Igrese el nombre del pasajero n° "+(i+1)).toUpperCase();
+    let nombrePasajeros = prompt("Ingrese el nombre del pasajero n° "+(i+1)).toUpperCase();
     let edadPasajeros = prompt("Ingrese la edad del pasajero n° "+(i+1));
     if(edadPasajeros<18){
         menoresEdad.push(nombrePasajeros);
@@ -62,7 +62,7 @@ class ViajeDelPasajero{
     }
 
     costoTotal(){
-        this.totalCostoPasaje = (this.clientesMenoresEdad.length*this.precioMenoresEdad) +   this.clienteMayoresEdad.length*this.precio;
+        this.totalCostoPasaje = (this.clientesMenoresEdad.length*this.precioMenoresEdad) +   (this.clienteMayoresEdad.length*this.precio);
     }    
 
 }
@@ -76,7 +76,7 @@ pasaje.costoTotal();
 if(pasaje.clientesMenoresEdad.length >0 ){
     console.log("Sr/a. "+ nombreCliente+": Los pasajeros menores de 18 años son : " +pasaje.clientesMenoresEdad+", el valor de cada uno de sus pasajes es: $"+ pasaje.precioMenoresEdad);
 
-    alert("Sr/a. "+ nombreCliente+": os pasajeros menores de 18 años son : " +pasaje.clientesMenoresEdad+", el valor de cada uno de sus pasajes es: $"+ pasaje.precioMenoresEdad);
+    alert("Sr/a. "+ nombreCliente+": Los pasajeros menores de 18 años son : " +pasaje.clientesMenoresEdad+", el valor de cada uno de sus pasajes es: $"+ pasaje.precioMenoresEdad);
 }
 
 if(pasaje.clientesMenoresEdad.length >0){
@@ -86,8 +86,10 @@ if(pasaje.clientesMenoresEdad.length >0){
 
 }
 
-console.log("El costo total del pasaje es $"+pasaje.totalCostoPasaje);
+console.log("El costo total de sus pasajes es $"+pasaje.totalCostoPasaje);
 
-alert("El costo total del pasaje es $"+pasaje.totalCostoPasaje)
+alert("El costo total del pasaje es $"+pasaje.totalCostoPasaje);
+
+alert("Gracias por utilizar nuestros servicios");
 
 
